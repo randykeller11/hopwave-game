@@ -5,9 +5,16 @@ const GAME = {
   SPEED: 5,
 };
 
+// Ground component settings are defined here:
+const GROUND = {
+  WIDTH: 3200,
+  LENGTH: 1200,
+  COLOR: "midnightblue",
+};
+
 // Road component settings are defined here:
 const ROAD = {
-  LENGTH: 7,
+  LENGTH: 10,
   CUTOFF: -200,
 };
 
@@ -33,5 +40,5 @@ const CAR = {
 };
 
 // Combine settings for export
-const settings = { GAME, ROAD, ROAD_SEGMENT, CAR };
+const settings = { GAME, GROUND, ROAD, ROAD_SEGMENT, CAR };
 export default settings;

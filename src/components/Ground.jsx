@@ -1,8 +1,8 @@
 import React, { useRef } from "react";
 
-const WIDTH = 3200;
-const LENGTH = 900;
-const COLOR = "midnightblue";
+// Import settings
+import settings from "../settings";
+const { WIDTH, LENGTH, COLOR } = settings.GROUND;
 
 export default function Ground(props) {
   // This reference will give us direct access to the mesh

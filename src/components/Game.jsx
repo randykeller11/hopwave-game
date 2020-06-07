@@ -19,10 +19,10 @@ export default function Game() {
   const [speed, setSpeed] = useState(SPEED);
 
   return (
-    <Canvas camera={{ position: [0, 25, -100] }} perspective="true">
+    <Canvas camera={{ position: [0, 25, -110] }} perspective="true">
       <ambientLight />
       <pointLight position={[100, 100, 100]} />
-      <Ground position={[0, 0, 175]} />
+      <Ground position={[0, 0, 400]} />
       <Road speed={speed} />
       <Car
         position={[0, 1, -70]}
