@@ -36,14 +36,14 @@ export default function Car(props) {
   useFrame(() => {
     // Move the car side-to-side using the A and D keys
     if (aKeyPressed && mesh.current.position.x <= BOUNDARY) {
-      if (mesh.current.rotation.y < 0.1) {
+      if (mesh.current.rotation.y < 0.15) {
         // Add a slight rotation when car is moving to the right
         mesh.current.rotation.y += ROTATION;
       }
       move(TURN_SPEED);
     }
     if (dKeyPressed && mesh.current.position.x >= 0 - BOUNDARY) {
-      if (mesh.current.rotation.y > -0.1) {
+      if (mesh.current.rotation.y > -0.15) {
         // Add a slight rotation when car is moving to the left
         mesh.current.rotation.y -= ROTATION;
       }
