@@ -1,3 +1,4 @@
+import { useState } from "react";
 import * as Tone from "tone";
 
 const musicPlayer = new Tone.Player({
