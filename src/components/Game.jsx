@@ -1,6 +1,4 @@
-import * as THREE from "three";
-import React, { useState, Suspense, useCallback, useEffect } from "react";
-import { Canvas } from "react-three-fiber";
+import React, { useState, Suspense } from "react";
 import "./Game.scss";
 
 // Import components
@@ -8,7 +6,6 @@ import Road from "./Road";
 import Car from "./Car";
 import Obstacles from "./Obstacles";
 // import Sun from "./Sun";
-
 import PalmTrees from "./PalmTrees";
 
 // Import hooks
@@ -33,7 +30,6 @@ export default function Game() {
   return (
     <>
       <Road speed={speed} />
-
       <Obstacles soundEffect={playSound} playerPosition={playerPosition} />
       {/* <Sun /> */}
       <Car
@@ -43,7 +39,6 @@ export default function Game() {
         position={playerPosition}
         setPosition={setPlayerPosition}
       />
-
       {/* <OrbitControl /> */}
       <Suspense fallback={null}>
         <PalmTrees />
