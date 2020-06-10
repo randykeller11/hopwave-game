@@ -14,8 +14,10 @@ import useSoundEffects from "../hooks/useSoundEffects";
 import usePlayerPosition from "../hooks/usePlayerPosition";
 
 // Optional components
-//import OrbitControl from "./OrbitControls";
-// import Zuckerberg from "./Zuckerberg";
+// import OrbitControl from "./OrbitControls";
+
+import Zuckerberg from "./Zuckerberg";
+
 
 // Import settings
 import settings from "../settings";
@@ -32,17 +34,32 @@ export default function Game() {
       <Road speed={speed} />
       <Obstacles soundEffect={playSound} playerPosition={playerPosition} />
       {/* <Sun /> */}
-      <Car
+
+      {/* <Car
         color={"white"}
         avgSpeed={SPEED}
         setSpeed={setSpeed}
         position={playerPosition}
         setPosition={setPlayerPosition}
-      />
+      /> */}
+
       {/* <OrbitControl /> */}
+
       <Suspense fallback={null}>
         <PalmTrees />
+
+
+        <Car
+
+          color={"white"}
+          avgSpeed={SPEED}
+          setSpeed={setSpeed}
+          position={playerPosition}
+          setPosition={setPlayerPosition}
+        />
+
         {/* <Zuckerberg/> */}
+
       </Suspense>
     </>
   );
