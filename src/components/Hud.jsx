@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from "react";
 import styled, { css, createGlobalStyle } from "styled-components";
+import Tappable from "react-tappable";
 import * as Tone from "tone";
+
+import "./Hud.scss";
 
 export default function Hud(props) {
   const { points, gameMode, setGameMode, setDifficulty } = props;
@@ -36,21 +39,23 @@ export default function Hud(props) {
     <>
       <Global />
       <UpperLeft>
-        <h4>
-          {music ? (
-            "Spotify"
-          ) : (
-            <iframe
-              title="Spotify"
-              src="https://open.spotify.com/embed/playlist/3PPbbsJhktmX5Cp6syx7gR"
-              width="300"
-              height="220"
-              frameborder="0"
-              allowtransparency="true"
-              allow="encrypted-media"
-            ></iframe>
-          )}
-        </h4>
+        {gameMode && (
+          <h4>
+            {music ? (
+              "Spotify"
+            ) : (
+              <iframe
+                title="Spotify"
+                src="https://open.spotify.com/embed/playlist/3PPbbsJhktmX5Cp6syx7gR"
+                width="300"
+                height="220"
+                frameborder="0"
+                allowtransparency="true"
+                allow="encrypted-media"
+              ></iframe>
+            )}
+          </h4>
+        )}
         <h4 onClick={() => startMusic()}>sound</h4>
         <h4>{music ? "on" : "off"}</h4>
       </UpperLeft>
@@ -61,6 +66,16 @@ export default function Hud(props) {
         {/* <br /> */}
         <a href="https://github.com/seanssullivan/hopwave-game">source</a>
       </UpperRight>
+      <MidLeft>
+        <Tappable onPress={() => console.log("LEFT!!!")} pressDelay={250}>
+          <div class="controls left-button"></div>
+        </Tappable>
+      </MidLeft>
+      <MidRight>
+        <Tappable onPress={() => console.log("RIGHT!!!")} pressDelay={250}>
+          <div class="controls right-button"></div>
+        </Tappable>
+      </MidRight>
       <LowerLeft>
         <ul>
           <li
@@ -93,9 +108,7 @@ export default function Hud(props) {
           </li>
         </ul>
       </LowerLeft>
-      <LowerRight>
-        <h2>{points}</h2>
-      </LowerRight>
+      <LowerRight>{gameMode && <h2>{points}</h2>}</LowerRight>
     </>
   );
 }
@@ -146,6 +159,9 @@ const UpperRight = styled.div`
     font-size: 1.5em;
   }
 `;
+
+const MidLeft = styled.div``;
+const MidRight = styled.div``;
 
 const LowerLeft = styled.li`
   ${base}
