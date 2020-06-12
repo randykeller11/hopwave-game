@@ -38,77 +38,93 @@ export default function Hud(props) {
   return (
     <>
       <Global />
-      <UpperLeft>
-        {gameMode && (
-          <h4>
-            {music ? (
-              "Spotify"
-            ) : (
-              <iframe
-                title="Spotify"
-                src="https://open.spotify.com/embed/playlist/3PPbbsJhktmX5Cp6syx7gR"
-                width="300"
-                height="220"
-                frameborder="0"
-                allowtransparency="true"
-                allow="encrypted-media"
-              ></iframe>
-            )}
-          </h4>
-        )}
-        <h4 onClick={() => startMusic()}>sound</h4>
-        <h4>{music ? "on" : "off"}</h4>
-      </UpperLeft>
-      <UpperRight>
-        <h2>HOPWAVE </h2>
-        {/* <br /> */}
-        <h2 onClick={setGameMode}>{gameMode ? "game On!" : "start"}</h2>
-        {/* <br /> */}
-        <a href="https://github.com/seanssullivan/hopwave-game">source</a>
-      </UpperRight>
-      <MidLeft>
-        <Tappable onPress={() => console.log("LEFT!!!")} pressDelay={250}>
-          <div class="controls left-button"></div>
-        </Tappable>
-      </MidLeft>
-      <MidRight>
-        <Tappable onPress={() => console.log("RIGHT!!!")} pressDelay={250}>
-          <div class="controls right-button"></div>
-        </Tappable>
-      </MidRight>
-      <LowerLeft>
-        <ul>
-          <li
-            className={`easy ${"easy" === active ? "bigText" : ""}`}
-            onClick={() => {
-              setDifficulty("easy");
-              setActive("easy");
-            }}
+      <div class="hud-grid">
+        <UpperLeft>
+          {gameMode && (
+            <h4>
+              {music ? (
+                "Spotify"
+              ) : (
+                <iframe
+                  title="Spotify"
+                  src="https://open.spotify.com/embed/playlist/3PPbbsJhktmX5Cp6syx7gR"
+                  width="300"
+                  height="220"
+                  frameborder="0"
+                  allowtransparency="true"
+                  allow="encrypted-media"
+                ></iframe>
+              )}
+            </h4>
+          )}
+          <h4 onClick={() => startMusic()}>sound</h4>
+          <h4>{music ? "on" : "off"}</h4>
+        </UpperLeft>
+        <UpperRight>
+          <div className="rightHud">
+            <h4>HOPWAVE </h4>
+            {/* <br /> */}
+            <h4 onClick={setGameMode}>{gameMode ? "game On!" : "start"}</h4>
+            {/* <br /> */}
+            <a href="https://github.com/seanssullivan/hopwave-game">source</a>
+          </div>
+        </UpperRight>
+        <MidLeft>
+          <Tappable
+            class="controls left-button"
+            onPress={() => console.log("LEFT!!!")}
+            pressDelay={100}
           >
-            easy
-          </li>
-          <li
-            id={"medium"}
-            className={`"medium" ${"medium" === active ? "bigText" : ""}`}
-            onClick={() => {
-              setDifficulty("medium");
-              setActive("medium");
-            }}
+            <div class="controls left-button">
+              <strong>L</strong>
+            </div>
+          </Tappable>
+        </MidLeft>
+        <MidRight>
+          <Tappable
+            class="controls right-button"
+            onPress={() => console.log("RIGHT!!!")}
+            pressDelay={100}
           >
-            medium
-          </li>
-          <li
-            className={`"hard" ${"hard" === active ? "bigText" : ""}`}
-            onClick={() => {
-              setDifficulty("hard");
-              setActive("hard");
-            }}
-          >
-            hard
-          </li>
-        </ul>
-      </LowerLeft>
-      <LowerRight>{gameMode && <h2>{points}</h2>}</LowerRight>
+            <div class="controls right-button">
+              <strong>R</strong>
+            </div>
+          </Tappable>
+        </MidRight>
+        <LowerLeft>
+          <ul>
+            <li
+              className={`easy ${"easy" === active ? "bigText" : ""}`}
+              onClick={() => {
+                setDifficulty("easy");
+                setActive("easy");
+              }}
+            >
+              easy
+            </li>
+            <li
+              id={"medium"}
+              className={`"medium" ${"medium" === active ? "bigText" : ""}`}
+              onClick={() => {
+                setDifficulty("medium");
+                setActive("medium");
+              }}
+            >
+              medium
+            </li>
+            <li
+              className={`"hard" ${"hard" === active ? "bigText" : ""}`}
+              onClick={() => {
+                setDifficulty("hard");
+                setActive("hard");
+              }}
+            >
+              hard
+            </li>
+          </ul>
+        </LowerLeft>
+        <LowerRight>{gameMode && <h2>{points}</h2>}</LowerRight>
+      </div>
     </>
   );
 }
@@ -160,8 +176,18 @@ const UpperRight = styled.div`
   }
 `;
 
-const MidLeft = styled.div``;
-const MidRight = styled.div``;
+const MidLeft = styled.div`
+  position: fixed;
+  left: 25px;
+  top: 50%;
+  bottom: 50%;
+`;
+const MidRight = styled.div`
+  position: fixed;
+  right: 25px;
+  top: 50%;
+  bottom: 50%;
+`;
 
 const LowerLeft = styled.li`
   ${base}
@@ -190,7 +216,6 @@ const LowerLeft = styled.li`
     // font-size: 1.4em;
     font-size: ${(props) => {
       const test = props;
-      console.log(test);
 
       if (test === "easy") {
         return "2.0";
