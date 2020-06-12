@@ -6,7 +6,16 @@ import * as Tone from "tone";
 import "./Hud.scss";
 
 export default function Hud(props) {
-  const { points, gameMode, setGameMode, setDifficulty } = props;
+  const {
+    points,
+    gameMode,
+    setGameMode,
+    setDifficulty,
+    leftMobile,
+    setLeftMobile,
+    rightMobile,
+    setRightMobile,
+  } = props;
 
   let [active, setActive] = useState("easy");
 
@@ -72,18 +81,26 @@ export default function Hud(props) {
         <MidLeft>
           <Tappable
             class="controls left-button"
-            onPress={() => console.log("LEFT!!!")}
+            onPress={() => setLeftMobile(true)}
+            onDeactivate={() => setLeftMobile(false)}
             pressDelay={100}
           >
-            <div class="controls left-button">
+            <div className="controls left-button">
               <strong>L</strong>
             </div>
           </Tappable>
         </MidLeft>
         <MidRight>
           <Tappable
-            class="controls right-button"
-            onPress={() => console.log("RIGHT!!!")}
+            className="controls right-button"
+            onPress={() => {
+              setRightMobile(true);
+              console.log(`Right Button is: ${rightMobile}`);
+            }}
+            onDeactivate={() => {
+              setRightMobile(false);
+              console.log(`Right Button is: ${rightMobile}`);
+            }}
             pressDelay={100}
           >
             <div class="controls right-button">

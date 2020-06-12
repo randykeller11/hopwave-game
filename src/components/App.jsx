@@ -15,6 +15,9 @@ export default function App() {
   const [gameMode, setGameMode] = useState(false);
   const [points, setPoints] = useState(0);
   const [difficulty, setDifficulty] = useState("easy");
+  const [leftMobile, setLeftMobile] = useState(false);
+  const [rightMobile, setRightMobile] = useState(false);
+
   return (
     <>
       <Canvas colorManagement camera={{ position: [0, 25, -100] }}>
@@ -28,6 +31,8 @@ export default function App() {
             points={points}
             setPoints={(prev) => setPoints(prev + 1)}
             difficulty={difficulty}
+            leftMobile={leftMobile}
+            rightMobile={rightMobile}
           />
         )}
         {!gameMode && (
@@ -46,6 +51,10 @@ export default function App() {
         setGameMode={() => setGameMode(!gameMode)}
         difficulty={difficulty}
         setDifficulty={setDifficulty}
+        leftMobile={leftMobile}
+        setLeftMobile={setLeftMobile}
+        rightMobile={rightMobile}
+        setRightMobile={setRightMobile}
       />
     </>
   );

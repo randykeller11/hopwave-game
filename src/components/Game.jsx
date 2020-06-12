@@ -33,7 +33,7 @@ import settings from "../settings";
 const { SPEED, START_POSITION } = settings.GAME;
 
 export default function Game(props) {
-  const { points, setPoints, difficulty } = props;
+  const { points, setPoints, difficulty, leftMobile, rightMobile } = props;
 
   const [playerPosition, setPlayerPosition] = usePlayerPosition(START_POSITION);
   const [
@@ -75,6 +75,8 @@ export default function Game(props) {
           setSpeed={setSpeed}
           position={playerPosition}
           setPosition={setPlayerPosition}
+          leftMobile={leftMobile}
+          rightMobile={rightMobile}
         />
 
         {/* <Zuckerberg/> */}

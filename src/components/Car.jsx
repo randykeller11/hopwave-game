@@ -20,7 +20,14 @@ const {
 } = settings.CAR;
 
 export default function Car(props) {
-  const { avgSpeed, setPosition, position, setSpeed } = props;
+  const {
+    avgSpeed,
+    setPosition,
+    position,
+    setSpeed,
+    leftMobile,
+    rightMobile,
+  } = props;
   // This reference will give us direct access to the mesh
   const group = useRef();
   const move = useMovement(group, "x", setPosition);
@@ -33,14 +40,17 @@ export default function Car(props) {
 
   useFrame(() => {
     // Move the car side-to-side using the A and D keys
-    if (aKeyPressed && group.current.position.x <= BOUNDARY) {
+    if ((aKeyPressed || leftMobile) && group.current.position.x <= BOUNDARY) {
       if (group.current.rotation.y < 0.1) {
         // Add a slight rotation when car is moving to the right
         group.current.rotation.y += ROTATION;
       }
       move(TURN_SPEED);
     }
-    if (dKeyPressed && group.current.position.x >= 0 - BOUNDARY) {
+    if (
+      (dKeyPressed || rightMobile) &&
+      group.current.position.x >= 0 - BOUNDARY
+    ) {
       if (group.current.rotation.y > -0.1) {
         // Add a slight rotation when car is moving to the left
         group.current.rotation.y -= ROTATION;
@@ -50,7 +60,7 @@ export default function Car(props) {
 
     // Straight car when not moving to either side
     if (
-      (!aKeyPressed && !dKeyPressed) ||
+      (!aKeyPressed && !leftMobile && !rightMobile && !dKeyPressed) ||
       group.current.position.x >= BOUNDARY ||
       group.current.position.x <= 0 - BOUNDARY
     ) {
